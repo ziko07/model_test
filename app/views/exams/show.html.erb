@@ -1,0 +1,16 @@
+<%= content_for :page_header do %>
+    <h3 style="margin-top: 10px;"> <%= @exam.title %> </h3>
+    <i> <%= @exam.description %> </i>
+<% end %>
+
+<ul class="subject-list">
+  <% @exam.subjects.each do |subject| %>
+      <li>
+        <%= link_to start_test_path(subject.exam_id, subject.id) do %>
+            <h3> <%= subject.title %> </h3>
+            <i> <%= subject.description %> </i> <br/>
+            <i> Start Test Now </i>
+        <%end%>
+      </li>
+  <% end %>
+</ul>

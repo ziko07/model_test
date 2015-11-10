@@ -1,8 +1,7 @@
-
-<div class="exam-header">
-  <h1> <%= @exam.title %> </h1>
-  <i> <%= @exam.description %> </i>
-</div>
+<%= content_for :page_header do %>
+    <h3 style="margin-top: 10px;"> <%= @exam.title %> </h3>
+    <i> <%= @exam.description %> </i>
+<% end %>
 
 <div class="panel panel-default question-list">
   <div class="panel-heading">
@@ -12,9 +11,8 @@
     <% if @subject_lists.present? %>
         <ul>
           <% @subject_lists.each do |list| %>
-              <li><%= link_to  list.title, admin_exam_subject_path(list.exam_id,list.id) %></li>
+              <li><%= link_to list.title, admin_exam_subject_path(list.exam_id, list.id) %></li>
           <% end %>
-
         </ul>
     <% end %>
   </div>
@@ -22,7 +20,7 @@
 
 <div class="panel panel-default question-content">
   <div class="panel-heading">
-    <h1 class="sticky"> Create New Subject </h1>
+    Create New Subject
   </div>
   <div class="panel-body">
     <div class="new-question">

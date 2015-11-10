@@ -1,21 +1,22 @@
-<div class="subject-header">
-  <h1 class="exam-title"> Exam: <%= @subject.exam.title %> </h1>
-  <h2> Subject: <%= @subject.title %> </h2>
-  <i> <%= @subject.description %> </i>
-</div>
+<%= content_for :page_header do %>
+    <h3 class="exam-title" style="margin-top: 10px;">
+      <%= link_to "Exam: #{@subject.exam.title}", admin_exam_path(@subject.exam) %> </h3>
+    <h4> Subject: <%= @subject.title %> </h4>
+    <i> <%= @subject.description %> </i>
+<% end %>
 
 <div class="panel panel-default question-list">
   <div class="panel-heading">
     Question List
   </div>
   <div class="panel-body">
-   <% if @questions.present? %>
+    <% if @questions.present? %>
         <ul class="question-items">
-          <% @questions.each  do |question| %>
-            <li class="question-item" ><%= link_to  question.title, admin_subject_question_path( question.subject_id,question.id) %></li>
+          <% @questions.each do |question| %>
+              <li class="question-item"><%= link_to question.title, admin_subject_question_path(question.subject_id, question.id) %></li>
           <% end %>
         </ul>
-   <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -26,11 +27,10 @@
   <div class="panel-body">
     <div class="new-question">
       <%= form_for @question, url: admin_subject_questions_path(@subject.exam_id, @subject.id) do |f| %>
-          <p><%= link_to_add_fields "Add Question", f, :answers %></p>
+          <%= link_to_add_fields "Add Question", f, :answers %>
           <div class="form-group">
-            <%= f.text_area :title, class: 'form-controll question-title',required:true, placeholder: 'Write your question...' %>
+            <%= f.text_area :title, class: 'form-controll question-title', required: true, placeholder: 'Write your question...' %>
           </div>
-
           <%= f.fields_for :answers do |builder| %>
               <%= render 'admin/subjects/answer_fields', :f => builder %>
           <% end %>

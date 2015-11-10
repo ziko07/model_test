@@ -1,0 +1,27 @@
+<%= content_for :page_header do %>
+    <h3>
+      <%= @exam.title %> <i class="fa fa-angle-double-right"></i> <%= @subject.title %>
+    </h3>
+    <i> <%= @subject.description %> </i>
+<% end %>
+
+<ul>
+  <% @subject.questions.each do |question| %>
+      <li class="question-box">
+        <div class="questions">
+          <i class="fa fa-question-circle"> </i>
+          <span> <%= question.title %> </span>
+        </div>
+        <ul class="answer-list">
+          <% question.answers.each do |answer| %>
+              <li>
+                <label for="answer_<%= answer.id %>">
+                  <input type="radio" id="answer_<%= answer.id %>" value="0" name="answerGroup">
+                  <%= answer.title %>
+                </label>
+              </li>
+          <% end %>
+        </ul>
+      </li>
+  <% end %>
+</ul>

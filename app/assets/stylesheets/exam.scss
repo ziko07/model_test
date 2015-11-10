@@ -1,0 +1,33 @@
+// Place all the styles related to the exam controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.exam-list, .subject-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  h3 {
+    margin: 0;
+  }
+  li {
+    width: 33.333%;
+    display: inline-block;
+    text-align: center;
+    background-color: #74cee4;
+    a {
+      display: block;
+      padding: 15px 10px;
+      -webkit-box-shadow: 0 4px 0 0 #6fc4d9;
+      -moz-box-shadow: 0 4px 0 0 #6fc4d9;
+      box-shadow: 0 4px 0 0 #6fc4d9;
+      color: #ffffff;
+      font-weight: bold;
+      &:hover {
+        text-decoration: none;
+        color: #dfdfdf;
+      }
+    }
+  }
+  li:nth-child(3n + 1) {
+    clear: both;
+  }
+}
