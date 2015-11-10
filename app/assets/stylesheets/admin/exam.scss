@@ -1,0 +1,24 @@
+// Place all the styles related to the admin/exam controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+h1.sticky {
+  font-size: 24px;
+  line-height: 48px;
+  height: 48px;
+  background: #BBBBBB;
+  text-align: left;
+  padding-left: 20px;
+  border-radius: 5px;
+  color: #fdfdfd;
+  margin: 10px 0;
+}
+
+body {
+  background: #cccccc;
+}
+
+.exam-header {
+    margin-bottom: 15px;
+    text-align: center;
+
+}

@@ -1,0 +1,45 @@
+<div class="subject-header">
+  <h1 class="exam-title"> Exam: <%= @subject.exam.title %> </h1>
+  <h2> Subject: <%= @subject.title %> </h2>
+  <i> <%= @subject.description %> </i>
+</div>
+
+<div class="panel panel-default question-list">
+  <div class="panel-heading">
+    Question List
+  </div>
+  <div class="panel-body">
+   <% if @questions.present? %>
+        <ul class="question-items">
+          <% @questions.each  do |question| %>
+            <li class="question-item" ><%= link_to  question.title, admin_subject_question_path( question.subject_id,question.id) %></li>
+          <% end %>
+        </ul>
+   <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default question-content">
+  <div class="panel-heading">
+    Create Question
+  </div>
+  <div class="panel-body">
+    <div class="new-question">
+      <%= form_for @question, url: admin_subject_questions_path(@subject.exam_id, @subject.id) do |f| %>
+          <p><%= link_to_add_fields "Add Question", f, :answers %></p>
+          <div class="form-group">
+            <%= f.text_area :title, class: 'form-controll question-title',required:true, placeholder: 'Write your question...' %>
+          </div>
+
+          <%= f.fields_for :answers do |builder| %>
+              <%= render 'admin/subjects/answer_fields', :f => builder %>
+          <% end %>
+          <p><%= f.submit "Create Question", class: 'form-controll pull-right answer-submit-btn btn btn-success' %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

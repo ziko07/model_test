@@ -1,0 +1,45 @@
+
+<div class="exam-header">
+  <h1> <%= @exam.title %> </h1>
+  <i> <%= @exam.description %> </i>
+</div>
+
+<div class="panel panel-default question-list">
+  <div class="panel-heading">
+    Subject List
+  </div>
+  <div class="panel-body">
+    <% if @subject_lists.present? %>
+        <ul>
+          <% @subject_lists.each do |list| %>
+              <li><%= link_to  list.title, admin_exam_subject_path(list.exam_id,list.id) %></li>
+          <% end %>
+
+        </ul>
+    <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default question-content">
+  <div class="panel-heading">
+    <h1 class="sticky"> Create New Subject </h1>
+  </div>
+  <div class="panel-body">
+    <div class="new-question">
+      <%= form_for @subject, url: admin_exam_subjects_path(@exam) do |f| %>
+          <div class="form-group">
+            <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
+          </div>
+          <div class="form-group">
+            <%= f.text_area :description, class: 'form-control', placeholder: 'Description' %>
+          </div>
+          <div class="actions">
+            <%= f.submit class: 'btn btn-success' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

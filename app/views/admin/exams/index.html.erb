@@ -1,0 +1,10 @@
+<ul>
+ <% @exams.each do |exam| %>
+   <li class="exam-item">
+     <%= link_to admin_exam_path(exam) do %>
+         <h3> <%= exam.title %> </h3>
+         <%= exam.description %>
+     <%end%>
+   </li>
+ <%end%>
+</ul>

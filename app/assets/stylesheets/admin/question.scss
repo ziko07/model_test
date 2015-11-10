@@ -1,0 +1,48 @@
+// Place all the styles related to the admin/question controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.new-question {
+  width: 100%;
+}
+
+.question-title {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.answer-title {
+  margin-bottom: 10px;
+  margin-left: 20px;
+  width: 92%;
+}
+
+.answer-submit-btn {
+  margin-right: 10px;
+}
+
+.question-content {
+  width: 49%;
+  margin: auto;
+  float: right;
+}
+
+.question-list {
+  width: 49%;
+  margin: auto;
+  float: left;
+}
+.question-items {
+ margin: 0;
+  padding: 0;
+}
+
+.question-item {
+  list-style: none;
+  padding: 6px;
+}
+
+.subject-header {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
