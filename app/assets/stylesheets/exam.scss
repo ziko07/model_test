@@ -9,16 +9,16 @@
     margin: 0;
   }
   li {
-    width: 33.333%;
-    display: inline-block;
+    //display: inline-block;
+    margin-bottom: 10px;
     text-align: center;
-    background-color: #74cee4;
     a {
-      display: block;
-      padding: 15px 10px;
+      background-color: #74cee4;
       -webkit-box-shadow: 0 4px 0 0 #6fc4d9;
       -moz-box-shadow: 0 4px 0 0 #6fc4d9;
       box-shadow: 0 4px 0 0 #6fc4d9;
+      display: block;
+      padding: 15px 10px;
       color: #ffffff;
       font-weight: bold;
       &:hover {
@@ -30,4 +30,9 @@
   li:nth-child(3n + 1) {
     clear: both;
   }
+}
+
+.exam-content {
+  padding-bottom: 20px;
+  min-height: 400px;
 }

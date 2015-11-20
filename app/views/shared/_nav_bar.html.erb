@@ -11,15 +11,38 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <%= render 'shared/user_profile_menu' %>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a class="page-scroll" href="#"> Home </a>
+          <a class="page-scroll" href="/"> Home </a>
         </li>
         <li>
-          <a class="page-scroll" href="/service"> Service </a>
+          <a class="page-scroll" href="/exams"> Model Test </a>
+        </li>
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Charges
+            <!--<span class="caret"></span>-->
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to payment_list_path do %>
+                  <i class="fa fa-credit-card"></i>
+                  Charge List
+              <% end %>
+            </li>
+            <li>
+              <%= link_to my_test_path do %>
+                  <i class="fa fa-archive"></i> Payments Procedure
+              <% end %>
+            </li>
+          </ul>
         </li>
         <li>
-          <a class="page-scroll" href="/product"> Product </a>
+          <% if user_signed_in? %>
+              <a class="page-scroll" href="/my_test"> My Test </a>
+          <%else%>
+              <%= link_to 'My Test', new_user_session_path %>
+          <% end %>
         </li>
         <li>
           <a class="page-scroll" href="/about"> About </a>

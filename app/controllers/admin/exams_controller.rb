@@ -17,7 +17,7 @@ class Admin::ExamsController < Admin::AdminController
 
   def show
     @exam = Exam.find_by_id(params[:id])
-    @subject_lists = Subject.all
+    @subject_lists = @exam.subjects
     @subject = Subject.new
   end
 

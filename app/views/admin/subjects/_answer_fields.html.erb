@@ -1,2 +1,6 @@
-<%= f.text_field :title, class:'form-controll answer-title', placeholder: 'Answer...' %>
-<%= f.check_box  :correct %>
+<div class="input-group question-answer">
+      <span class="input-group-addon">
+        <%= f.check_box  :correct %>
+      </span>
+  <%= f.text_field :title, class:'form-control', placeholder: 'Answer...' %>
+</div>

@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-
+  mathjax 'mathjax'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -17,6 +16,8 @@ Rails.application.routes.draw do
   #   resources :products
 
   namespace :admin do
+    get 'user_payments', to: "payments#index"
+    get ':payment_id/user_payment_approve/:status', to: "payments#payment_approval", as: :approve_payment
     resources :exams do
       resources :subjects
     end
@@ -29,6 +30,23 @@ Rails.application.routes.draw do
       resources :answers
     end
   end
+
+  # get '/users/:user_id/payments/new', to: 'payments#new', as: :new_user_payments
+  # post '/users/:user_id/payments', to: 'payments#create', as: :user_payments
+
+  resources :payments
+  get 'payment_list', to: 'payments#payment_list', as: :payment_list
+
+  get 'remove_rejected_payment', to: 'payments#remove_rejected_payment'
+  resources :exams, only: ['index', 'show']
+  get '/exams/:exam_id/subject/:id', to: 'subjects#test', as: :start_test
+  get '/test/start/:id', to: 'model_tests#start', as: :start_model_test
+  get '/my_test', to: 'welcome#my_test', as: :my_test
+  post '/test/:test_id/answer', to: 'model_tests#answer', as: :test_answer
+  get '/test/:id/result', to: 'model_tests#result', as: :test_result
+  get '/profile', to: 'welcome#profile', as: :user_profile
+
+
 
 
   # Example resource route with options:

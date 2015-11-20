@@ -1,52 +1,67 @@
-<h1 class="exam-title"> Exam: <%= @question.subject.exam.title %> </h1>
-<h2> Subject: <%= @question.subject.title %> </h2>
-<i> <%= @question.title %> </i>
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="<%= admin_exam_path(@question.subject.exam) %>"> <%= @question.subject.exam.title %> </a>
+      <%= link_to @question.subject.title, admin_subject_path(@question.subject) %>
+      <a href="javascript:void(0);" class="active"> <%= @question.title %> </a>
+    </div>
+<% end %>
 
 <% if @question.answers.present? %>
-    <ul>
-      <% @question.answers.each do |answer| %>
-        <li>
-          <%= answer.title  %>
-          <% if @question.correct_answer.present? %>
-              <% if @question.correct_answer.include?(answer.id.to_s) %>
-                  <%= check_box_tag 'correct', 'yes', true, "data-answer_id" => answer.id , "data-question-id" => @question.id %>
-              <% else %>
-                  <%= check_box_tag 'false', 'yes', false, "data-answer_id" => answer.id , "data-question-id" => @question.id %>
-              <% end %>
-                <% else %>
-              <%= check_box_tag 'false', 'yes', false, "data-answer_id" => answer.id , "data-question-id" => @question.id %>
-           <% end %>
-
+    <div class="admin-content">
+      <ul>
+        <li class="question-box">
+          <div class="questions">
+            <i class="fa fa-question-circle"> </i>
+            <span> <%= @question.title %> </span>
+          </div>
+          <ul class="answer-list">
+            <% @question.answers.each do |answer| %>
+                <li>
+                  <label>
+                    <% if @question.correct_answer.present? %>
+                        <% if @question.correct_answer.include?(answer.id.to_s) %>
+                            <%= check_box_tag 'correct', 'yes', true, "data-answer_id" => answer.id, "data-question-id" => @question.id %>
+                        <% else %>
+                            <%= check_box_tag 'false', 'yes', false, "data-answer_id" => answer.id, "data-question-id" => @question.id %>
+                        <% end %>
+                    <% else %>
+                        <%= check_box_tag 'false', 'yes', false, "data-answer_id" => answer.id, "data-question-id" => @question.id %>
+                    <% end %>
+                    <span> <%= answer.title %> </span>
+                  </label>
+                </li>
+            <% end %>
+          </ul>
         </li>
-      <% end %>
-    </ul>
+      </ul>
+    </div>
 <% end %>
 
 <script type="text/javascript">
-    $("input[type=checkbox]").click(function(){
+    $("input[type=checkbox]").click(function () {
         var selected = '';
-        if($(this).attr('checked')){
+        if ($(this).attr('checked')) {
             $(this).attr('checked', false); // Unchecks it
-        }else{
+        } else {
             $(this).attr('checked', true);
         }
         question_id = ($(this).attr('data-question-id'));
-        $('input[type=checkbox]').each(function() {
-            if($(this).attr('checked')) {
+        $('input[type=checkbox]').each(function () {
+            if ($(this).attr('checked')) {
                 if (selected == '') {
                     selected = ($(this).attr('data-answer_id'));
                 }
                 else {
-                    selected = selected + ',' +  ($(this).attr('data-answer_id'));
+                    selected = selected + ',' + ($(this).attr('data-answer_id'));
                 }
             }
         });
 
         $.ajax({
-            url: '/admin/questions/'+question_id+'/update_correct_answer',
+            url: '/admin/questions/' + question_id + '/update_correct_answer',
             type: 'get',
             datatype: 'script',
-            data:{ correct_answer: selected, question_id: question_id},
+            data: {correct_answer: selected, question_id: question_id},
             success: function (data) {
 
             },

@@ -1,10 +1,22 @@
-<ul>
- <% @exams.each do |exam| %>
-   <li class="exam-item">
-     <%= link_to admin_exam_path(exam) do %>
-         <h3> <%= exam.title %> </h3>
-         <%= exam.description %>
-     <%end%>
-   </li>
- <%end%>
-</ul>
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="javascript:void(0);" class="active"> Model Test Exam List or Create New Exam </a>
+    </div>
+<% end %>
+
+<div class="exam-content">
+  <ul class="subject-list col-lg-12">
+    <% @exams.each do |exam| %>
+        <li class="col-md-3">
+          <%= link_to admin_exam_path(exam) do %>
+              <h3> <%= exam.title %> </h3>
+              <i> <%= exam.description %> </i>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="actions form-group clearfix" style="margin-top: 10px;">
+  <%= link_to 'Create New Exam', new_admin_exam_path, class: 'btn btn-success pull-right' %>
+</div>

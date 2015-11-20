@@ -1,16 +1,18 @@
 <%= content_for :page_header do %>
-    <h3 style="margin-top: 10px;"> <%= @exam.title %> </h3>
-    <i> <%= @exam.description %> </i>
+    <div class="breadcrumb flat">
+      <a href="/"> Think </a>
+      <a href="/exams"> <%= @exam.title %> </a>
+      <a href="javascript:void(0);" class="active"> Start Test </a>
+      <a href="javascript:void(0);"> Get Success </a>
+    </div>
 <% end %>
 
-<ul class="subject-list">
-  <% @exam.subjects.each do |subject| %>
-      <li>
-        <%= link_to start_test_path(subject.exam_id, subject.id) do %>
-            <h3> <%= subject.title %> </h3>
-            <i> <%= subject.description %> </i> <br/>
-            <i> Start Test Now </i>
-        <%end%>
-      </li>
-  <% end %>
-</ul>
+<div class="exam-content col-lg-12 clearfix">
+  <ul class="subject-list">
+    <% @exam.subjects.each do |subject| %>
+        <li class="col-md-4">
+          <%= model_test_link(current_user, subject) %>
+        </li>
+    <% end %>
+  </ul>
+</div>

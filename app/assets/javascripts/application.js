@@ -29,3 +29,22 @@ function add_fields(link, association, content) {
         before: content.replace(regexp, new_id)
     });
 }
+
+$( document ).ready(function() {
+    $( ".remove-rejected-payments" ).click(function() {
+        user_id = ($(this).attr("data-user-id"));
+        $.ajax({
+            url: '/remove_rejected_payment',
+            type: 'get',
+            datatype: 'script',
+            data: {user_id: user_id},
+            success: function (data) {
+
+            },
+            error: function () {
+            }
+        });
+    });
+
+});
+

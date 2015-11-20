@@ -5,14 +5,19 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= mathjax_tag %>
 </head>
 <body id="page-top">
-<%= render 'shared/admin_nav' %>
+<%= render 'shared/nav_bar' %>
 <div class="exam-header common-header">
+  <%= user_notification(current_user) %>
   <%= yield :page_header %>
 </div>
 <div class="container-fluid admin-content">
   <%= yield %>
 </div>
 </body>
+<footer class="footer text-center">
+  Copy @ Company 2015
+</footer>
 </html>

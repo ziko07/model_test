@@ -1,12 +1,27 @@
-<h1 class="sticky"> Create New Exam </h1>
-<%= form_for @exam, url: admin_exams_path do |f| %>
-    <div class="form-group">
-      <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
-    </div>
-    <div class="form-group">
-      <%= f.text_area :description, class: 'form-control', placeholder: 'Description' %>
-    </div>
-    <div class="actions">
-      <%= f.submit class: 'btn btn-success' %>
-    </div>
+<%= content_for :page_header do %>
+    <%= content_for :page_header do %>
+        <div class="breadcrumb flat">
+          <%= link_to 'Home', admin_exams_path %>
+          <a href="javascript:void(0);" class="active"> Create New Model Test Exam </a>
+        </div>
+    <% end %>
 <% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Create New Exam
+  </div>
+  <div class="panel-body">
+    <%= form_for @exam, url: admin_exams_path do |f| %>
+        <div class="form-group">
+          <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :description, class: 'form-control', placeholder: 'Description' %>
+        </div>
+        <div class="actions form-group clearfix">
+          <%= f.submit class: 'btn btn-success pull-right' %>
+        </div>
+    <% end %>
+  </div>
+</div>

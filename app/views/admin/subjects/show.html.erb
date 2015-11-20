@@ -1,19 +1,25 @@
 <%= content_for :page_header do %>
-    <h3 class="exam-title" style="margin-top: 10px;">
-      <%= link_to "Exam: #{@subject.exam.title}", admin_exam_path(@subject.exam) %> </h3>
-    <h4> Subject: <%= @subject.title %> </h4>
-    <i> <%= @subject.description %> </i>
+    <div class="breadcrumb flat">
+      <a href="<%= admin_exam_path(@subject.exam) %>"> <%= @subject.exam.title %> </a>
+      <a href="javascript:void(0);"> <%= @subject.title %> </a>
+      <a href="javascript:void(0);" class="active"> <%= @subject.description %> </a>
+    </div>
 <% end %>
 
 <div class="panel panel-default question-list">
   <div class="panel-heading">
-    Question List
+    <i class="fa fa-list"></i> Question List
   </div>
   <div class="panel-body">
     <% if @questions.present? %>
         <ul class="question-items">
           <% @questions.each do |question| %>
-              <li class="question-item"><%= link_to question.title, admin_subject_question_path(question.subject_id, question.id) %></li>
+              <li class="question-item">
+                <%= link_to admin_subject_question_path(question.subject_id, question.id) do %>
+                    <i class="fa fa-question-circle"> </i>
+                    <%= question.title %>
+                <%end%>
+              </li>
           <% end %>
         </ul>
     <% end %>
@@ -26,15 +32,14 @@
   </div>
   <div class="panel-body">
     <div class="new-question">
-      <%= form_for @question, url: admin_subject_questions_path(@subject.exam_id, @subject.id) do |f| %>
-          <%= link_to_add_fields "Add Question", f, :answers %>
+      <%= form_for @question, url: admin_subject_questions_path(@subject) do |f| %>
           <div class="form-group">
-            <%= f.text_area :title, class: 'form-controll question-title', required: true, placeholder: 'Write your question...' %>
+            <%= f.text_area :title, class: 'form-control question-title', required: true, placeholder: 'Write your question...' %>
           </div>
           <%= f.fields_for :answers do |builder| %>
               <%= render 'admin/subjects/answer_fields', :f => builder %>
           <% end %>
-          <p><%= f.submit "Create Question", class: 'form-controll pull-right answer-submit-btn btn btn-success' %></p>
+          <%= f.submit "Create Question", class: 'form-controll pull-right answer-submit-btn btn btn-success' %>
       <% end %>
     </div>
   </div>

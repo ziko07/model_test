@@ -1,13 +1,20 @@
 <%= content_for :page_header do %>
- <h1> Select your exam </h1>
-<%end%>
-<ul class="exam-list">
-  <% @exams.each do |exam| %>
-      <li class="exam-item">
-        <%= link_to exam_path(exam) do %>
-            <h3> <%= exam.title %> </h3>
-            <%= exam.description %>
-        <%end%>
-      </li>
-  <%end%>
-</ul>
+    <div class="breadcrumb flat">
+      <a href="/"> Think </a>
+      <a href="javascript:void(0);" class="active"> Select Model Test </a>
+      <a href="javascript:void(0);"> Start Test </a>
+      <a href="javascript:void(0);"> Get Success </a>
+    </div>
+<% end %>
+<div class="exam-content">
+  <ul class="exam-list col-lg-12">
+    <% @exams.each do |exam| %>
+        <li class="exam-item col-md-4">
+          <%= link_to exam_path(exam) do %>
+              <h3> <%= exam.title %> </h3>
+              <%= exam.description %>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+</div>

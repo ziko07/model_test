@@ -1,8 +1,29 @@
+body {
+  background: rgba(225, 225, 225, 0.3) none repeat scroll 0 0
+}
+
 .common-header {
-  background-image: url('header.jpeg');
+  background-image: url('page_header.jpeg');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
-  padding: 10px 0;
-  margin-top: 51px;
+  padding: 51px 0 10px;
+  .header-bg {
+    display: inline-block;
+    background: #F05F40;
+    padding: 7px 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #fdfdfd;
+  }
+}
+
+.footer {
+  border-top: solid 1px #CCCCCC;
+  padding: 15px;
+}
+
+.clear-float {
+  clear: both;
 }
