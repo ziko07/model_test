@@ -1,0 +1,49 @@
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="/"> Think </a>
+      <a href="/exams"> <%= @exam.title %> / <%= @subject.title %> </a>
+      <a href="javascript:void(0);"> Start Test </a>
+      <a href="javascript:void(0);" class="active"> Success In Progress </a>
+    </div>
+<% end %>
+
+<ul>
+  <% @subject.questions.each do |question| %>
+      <li class="question-box">
+        <div class="questions">
+          <i class="fa fa-question-circle"> </i>
+          <span> <%= question.title %> </span>
+        </div>
+        <ul class="answer-list">
+          <% question.answers.each do |answer| %>
+              <li>
+                <label for="answer_<%= answer.id %>">
+                  <input type="radio" class="my-answer" data-q-id="<%= question.id %>" id="answer_<%= answer.id %>" value="<%= answer.id %>" name="answer_<%= question.id %>">
+                  <%= answer.title %>
+                </label>
+              </li>
+          <% end %>
+        </ul>
+      </li>
+  <% end %>
+</ul>
+
+<div class="actions pull-right form-group">
+  <%= link_to 'Get My Score', test_result_path(@model_test), class: 'btn btn-success' %>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.my-answer').click(function () {
+            var element = $(this);
+            $.ajax({
+                url: "<%= test_answer_path(@model_test) %>",
+                type: 'post',
+                data: {question_id: element.attr('data-q-id'), answer: element.val()},
+                success: function() {
+                    alert('Go for next');
+                }
+            })
+        });
+    })
+</script>

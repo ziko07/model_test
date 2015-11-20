@@ -1,0 +1,20 @@
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="/"> Home </a>
+      <a href="javascript:void(0);" class="active"> My Model Test </a>
+    </div>
+<% end %>
+
+<div class="exam-content col-lg-12 clearfix">
+  <ul class="subject-list">
+    <% @model_tests.each do |model_test| %>
+        <li class="col-md-4">
+          <%= link_to test_result_path(model_test.id) do %>
+              <h3> <%= model_test.subject.exam.title %> </h3>
+              <h4> <%= model_test.subject.title %> </h4>
+              <i> Model Test #<%= model_test.id %> </i>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+</div>

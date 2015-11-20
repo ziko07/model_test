@@ -1,0 +1,58 @@
+<%= content_for :page_header do %>
+    <%= content_for :page_header do %>
+        <div class="breadcrumb flat">
+          <%= link_to 'Home', admin_exams_path %>
+          <%= link_to 'Payment Procedure', admin_exams_path %>
+        </div>
+    <% end %>
+<% end %>
+
+<div class="col-lg-12 clearfix">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Payment List
+      </div>
+      <div class="panel-body">
+        <% if @payment_list.present? %>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>Amount</th>
+                <th>Transaction Id</th>
+                <th>Approve Status</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% if @payment_list.present? %>
+                  <% @payment_list.each do |payment| %>
+                      <tr>
+                        <td><%= payment.user.name %></td>
+                        <td><%= payment.user.email %></td>
+                        <td><%=  payment.amount %></td>
+                        <td><%= payment.bkash_transaction %></td>
+                        <% if ( payment.is_approved ) %>
+                            <td>Approved</td>
+                        <% else %>
+                            <% if payment.is_rejected%>
+                                <td></td>
+                            <% else %>
+                                <td>
+                                    Pending
+                                </td>
+                            <% end %>
+                        <% end %>
+                      </tr>
+                  <% end %>
+              <% end %>
+              </tbody>
+            </table>
+            <% else %>
+            Currently You have no payments
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>

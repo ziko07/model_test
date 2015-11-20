@@ -1,0 +1,63 @@
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="javascript:void(0);" class="active"> User Payment List </a>
+    </div>
+<% end %>
+
+<div class="exam-content">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>User Name</th>
+      <th>User Email</th>
+      <th>Amount</th>
+      <th>Transaction Id</th>
+      <th>Approve Status</th>
+      <th>Reject Status</th>
+    </tr>
+    </thead>
+    <tbody>
+     <% if @payments.present? %>
+     <% @payments.each do |payment| %>
+        <tr>
+          <td><%= payment.user.name %></td>
+          <td><%= payment.user.email %></td>
+          <td><%=  payment.amount %></td>
+          <td><%= payment.bkash_transaction %></td>
+          <% if ( payment.is_approved ) %>
+          <td>Approved</td>
+              <% else %>
+              <% if payment.is_rejected%>
+              <td></td>
+              <% else %>
+                  <td>
+                    <%= link_to "Approve", admin_approve_payment_path(payment,"approve") %>
+                  </td>
+              <% end %>
+          <% end %>
+
+          <% if (!payment.is_rejected and !payment.is_approved) %>
+              <td>
+                <%= link_to "Rejected", admin_approve_payment_path(payment,"reject") %>
+              </td>
+              <% else %>
+              <% if payment.is_approved %>
+                  <td>
+
+                  </td>
+              <% else %>
+                  <td>
+                    Rejected
+                  </td>
+              <%end%>
+          <% end %>
+        </tr>
+      <% end %>
+     <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="actions form-group clearfix" style="margin-top: 10px;">
+  <%= link_to 'Create New Exam', new_admin_exam_path, class: 'btn btn-success pull-right' %>
+</div>

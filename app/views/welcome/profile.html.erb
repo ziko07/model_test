@@ -1,0 +1,10 @@
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="/"> Home </a>
+      <a href="/exams"> New Model Test </a>
+      <a href="javascript:void(0);" class="active"> Profile </a>
+    </div>
+<%end%>
+<div>
+  <h1> <%= current_user.name %> </h1>
+</div>

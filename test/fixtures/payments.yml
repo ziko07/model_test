@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transaction: MyText
+  user_id: 1
+  is_approve: false
+
+two:
+  transaction: MyText
+  user_id: 1
+  is_approve: false

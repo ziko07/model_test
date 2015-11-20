@@ -1,0 +1,55 @@
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="/"> Home </a>
+      <a href="/exams"> Exam </a>
+      <a href="javascript:void(0);" class="active"> Payment </a>
+      <a href="javascript:void(0);"> Start Model Test </a>
+    </div>
+<% end %>
+<div class="features my-templates-area bg-area" id="features">
+  <div class="col-lg-8 col-lg-offset-2 no-padding">
+    <h4 class='text-center'>
+      Continue Your Model Test &amp; Payment
+      <hr class="primary">
+    </h4>
+  </div>
+  <div class="clearfix"></div>
+  <div class="col-lg-8 col-lg-offset-2">
+    <div class="panel-body payment_details ">
+      <ul class="bkash-instruction">
+        <li>
+          You have to pay 200 TK.
+        </li>
+
+        <li>
+          Send 200 TK to this bkash number 01730426798.
+        </li>
+
+        <li>
+          Collect/Find your Bkash transaction number and put into bellow field.
+        </li>
+
+        <li>
+          admin will approve the payment and new template will be added to your template list soon.
+        </li>
+
+        <li>
+          For any more information contact us at 01730426798.
+        </li>
+      </ul>
+
+      <%= form_for @payment do |f| %>
+          <div class="form-group">
+            <%= f.number_field :amount,placeholder: 'Your Amount', class: 'form-control ', :style => ''  %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :bkash_transaction, placeholder: 'Bkash Transaction Number', class: 'form-control ', :style => '' %>
+          </div>
+          </div>
+          <div class="form-group pull-right">
+            <%= f.submit 'Countinue Payment', class: "btn btn-success" %>
+          </div>
+      <% end %>
+
+      </div>
+</div>

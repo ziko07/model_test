@@ -1,0 +1,28 @@
+<%= content_for :page_header do %>
+    <div class="breadcrumb flat">
+      <a href="/"> Think </a>
+      <a href="/exams"> <%= @exam.title %> / <%= @subject.title %> </a>
+      <a href="javascript:void(0);"> Start Test </a>
+      <a href="javascript:void(0);" class="active"> Your Success </a>
+    </div>
+<% end %>
+
+<ul>
+  <% @subject.questions.each do |question| %>
+      <li class="question-box">
+        <div class="questions">
+          <i class="fa fa-question-circle"> </i>
+          <span> <%= question.title %> </span>
+        </div>
+        <ul class="answer-list">
+          <% question.answers.each do |answer| %>
+              <li>
+                <label for="answer_<%= answer.id %>" class="<%= chosen_answer(@model_test.id, question, answer) %>">
+                  <%= answer.title %>
+                </label>
+              </li>
+          <% end %>
+        </ul>
+      </li>
+  <% end %>
+</ul>
